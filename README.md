@@ -1,8 +1,8 @@
 # Overview of GreenScreen control
 
-A simple server to headlessly control a [greenscreen.io](GreenScreen) installation and a set of Chromecasts. Controls the assignment of GreenScreen channels to Chromecasts using the GreenScreen API, and then can start/stop casting to a particular Chromecast.
+A simple server to headlessly control a [http://greenscreen.io](GreenScreen) installation and a set of Chromecasts. Controls the assignment of GreenScreen channels to Chromecasts using the GreenScreen API, and then can start/stop casting to a particular Chromecast.
 
-Depends on a working [greenscreen.io](GreenScreen) installation.
+Depends on a working [http://greenscreen.io](GreenScreen) installation.
 
 ## Starting the server
 
@@ -10,7 +10,7 @@ Depends on a working [greenscreen.io](GreenScreen) installation.
 ./greenscreen_control.py $APPID
 ```
 
-$APPID is the value of your "Application ID" from the [https://cast.google.com/publish/#/overview](Google Cast Developer Console). This will have been setup as part of the [greenscreen.io](GreenScreen) installation.
+$APPID is the value of your "Applicakion ID" from the [https://cast.google.com/publish/](Google Cast Developer Console). This will have been setup as part of the [http://greenscreen.io](GreenScreen) installation.
 
 Available arguments:
 ```
