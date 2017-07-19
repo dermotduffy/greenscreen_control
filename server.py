@@ -54,16 +54,16 @@ class GSCLineHandler(LineReceiver):
         cast = bool(int(cast_result.group('cast')))
         continue
 
-    if not chromecast:
+    if chromecast is None:
       logging.warning("Received command without chromecast name from: %s" % (
           str(self.transport.getPeer())))
       return
-    elif not channel and not cast:
+    elif channel is None and cast is None:
       logging.warning("Received incomplete command for '%s' from: %s" % (         
           chromecast, str(self.transport.getPeer())))
       return
 
-    if channel:
+    if channel is not None:
       self._greenscreen_client.set_channel_for_chromecast(
           chromecast, channel)
     if cast is not None:
