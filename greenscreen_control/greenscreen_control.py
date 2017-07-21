@@ -3,11 +3,9 @@
 import argparse
 import logging
 
-import server
-import chromecast_controller
-import greenscreen_client
-
-GREENSCREEN_SERVER = "http://4lw.eu:4994"
+import .server
+import .chromecast_controller
+import .greenscreen_client
 
 def main():
   parser = argparse.ArgumentParser()
