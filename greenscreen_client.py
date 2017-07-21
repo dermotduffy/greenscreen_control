@@ -64,7 +64,7 @@ class GreenScreenClient(object):
     channels = self.get_channels()  
     if not channels:
       return None
-    for i in xrange(len(channels)):
+    for i in range(len(channels)):
       if channels[i]["name"] == channel_name:
         return channels[i]["id"]
 

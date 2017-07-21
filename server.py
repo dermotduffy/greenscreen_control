@@ -24,7 +24,7 @@ class GSCLineHandler(LineReceiver):
   RE_CHANNEL = re.compile("^channel=(?P<channel>.*)")
   RE_CAST = re.compile("^cast=(?P<cast>[01])$")
 
-  delimiter = "\n"
+  delimiter = b"\n"
 
   def __init__(self, greenscreen_client, chromecast_controller, app_id):
     self._greenscreen_client = greenscreen_client
@@ -36,9 +36,8 @@ class GSCLineHandler(LineReceiver):
  
   def lineReceived(self, line):
     chromecast = channel = cast = None
-
+    line = line.decode('utf-8')
     line = line.strip()
-    print "Line:", line
 
     for piece in line.split(","):
       chromecast_result = self.RE_CHROMECAST.search(piece) 

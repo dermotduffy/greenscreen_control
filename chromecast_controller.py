@@ -5,11 +5,11 @@ import pychromecast
 
 class CachedChromecastController(object):
   def __init__(self):
-    self._chromecasts = {}
+    self._chromecasts = []
 
   def discover_chromecasts(self):
     try:
-      chromecasts = pychromecast.get_chromecasts_as_dict()
+      chromecasts = pychromecast.get_chromecasts()
     except pychromecast.PyChromecastError:
       logging.exception("Could not discover Chromecasts")
       return
@@ -18,11 +18,12 @@ class CachedChromecastController(object):
       self._chromecasts = chromecasts
 
   def _get_chromecast(self, chromecast_name):
-    if chromecast_name not in self._chromecasts:
+    for chromecast in self._chromecasts:
+      if chromecast_name == chromecast.name:
+        return chromecast
+    else:
       logging.error("Could not find Chromecast \"%s\"" % chromecast_name)
       return None
-    else:
-      return self._chromecasts[chromecast_name]
    
   def start_chromecast_app(self, chromecast_name, app_id):
     chromecast = self._get_chromecast(chromecast_name)
