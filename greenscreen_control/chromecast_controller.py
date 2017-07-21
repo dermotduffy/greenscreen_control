@@ -8,6 +8,7 @@ class CachedChromecastController(object):
     self._chromecasts = []
 
   def discover_chromecasts(self):
+    logging.info("Discovering Chromecasts ...")
     try:
       chromecasts = pychromecast.get_chromecasts()
     except pychromecast.PyChromecastError:
