@@ -21,7 +21,7 @@ def main():
       "-l", "--loglevel", default="INFO", help="logging level",
       choices=["ERROR", "WARNING", "INFO", "DEBUG"])
   args = parser.parse_args()
- 
+
   logging.basicConfig(
       level=logging.getLevelName(args.loglevel),
       format="%(asctime)s %(levelname)s %(filename)s:%(lineno)d] %(message)s",
@@ -32,7 +32,7 @@ def main():
   logging.info("... Control Server port: %u" % args.port)
 
   controller = chromecast_controller.CachedChromecastController()
- 
+
   logging.info("Discovering Chromecasts ...")
   controller.discover_chromecasts()
 
