@@ -31,6 +31,6 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
     entry_points = {
-        'console_scripts': ['greenscreen_control=greenscreen_control.greenscreen_control:main'],
+        'console_scripts': ['greenscreen_control=greenscreen_control.greenscreen_control_cli:main'],
     }
 )

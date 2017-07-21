@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import argparse
 import logging
 
-import .server
-import .chromecast_controller
-import .greenscreen_client
+from greenscreen_control import chromecast_controller
+from greenscreen_control import greenscreen_client
+from greenscreen_control import server
 
 def main():
   parser = argparse.ArgumentParser()
