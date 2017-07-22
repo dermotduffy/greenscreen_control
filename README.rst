@@ -23,21 +23,25 @@ Using the command line utility
 Set the CCTV channel on the Kitchen Chromecast:
 
 ::
+
     $ greenscreen_control -c CCTV set-channel Kitchen
 
 Start casting a given AppID on a Chromecast:
 
 ::
+
     $ greenscreen_control -a $APPID cast Kitchen
 
 Stop casting on the Kitchen Chromecast:
 
 ::
+
     $ greenscreen_control stop-cast Kitchen
 
 Available arguments:
 
 ::
+
     usage: greenscreen_control [-h] [-g GREENSCREEN_SERVER] [-a APPID]
                                [-c CHANNEL] [-l {ERROR,WARNING,INFO,DEBUG}]
                                {set-channel,cast,stop-cast} chromecast
@@ -72,6 +76,7 @@ Chromecast casting.
 Available arguments:
 
 ::
+
     usage: greenscreen_control_server [-h] [-g GREENSCREEN_SERVER] [-p PORT]
                                       [-l {ERROR,WARNING,INFO,DEBUG}]
                                       appid
