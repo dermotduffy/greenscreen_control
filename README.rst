@@ -2,23 +2,23 @@ Overview of GreenScreen control
 ===============================
 
 A simple module, command line utility and tcp server to headlessly control a
-`GreenScreen <http://greenscreen.io>`__ installation and a set of
+`GreenScreen <http://greenscreen.io>`_ installation and a set of
 Chromecasts. Controls the assignment of GreenScreen channels to
 Chromecasts using the GreenScreen API, and then can start/stop casting
 to a particular Chromecast.
 
-Requires a working `GreenScreen <http://greenscreen.io>`__ installation.
+Requires a working `GreenScreen <http://greenscreen.io>`_ installation.
 
 AppID
--------------------
+-----
 
 In these instructions, $APPID is the value of your "Application ID" from the
-`Google Cast Developer Console <https://cast.google.com/publish/>`__. This will
-have been setup as part of the `GreenScreen <http://greenscreen.io>`__
+`Google Cast Developer Console <https://cast.google.com/publish/>`_. This will
+have been setup as part of the `GreenScreen <http://greenscreen.io>`_
 installation.
 
 Using the command line utility
--------------------
+------------------------------
 
 Set the CCTV channel on the Kitchen Chromecast:
 
