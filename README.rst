@@ -1,34 +1,80 @@
 Overview of GreenScreen control
 ===============================
 
-A simple server to headlessly control a
+A simple module, command line utility and tcp server to headlessly control a
 `GreenScreen <http://greenscreen.io>`__ installation and a set of
 Chromecasts. Controls the assignment of GreenScreen channels to
 Chromecasts using the GreenScreen API, and then can start/stop casting
 to a particular Chromecast.
 
-Depends on a working `GreenScreen <http://greenscreen.io>`__
-installation.
+Requires a working `GreenScreen <http://greenscreen.io>`__ installation.
 
-Starting the server
+AppID
 -------------------
 
-::
-
-    ./greenscreen_control.py $APPID
-
-$APPID is the value of your "Applicakion ID" from the `Google Cast
-Developer Console <https://cast.google.com/publish/>`__. This will have
-been setup as part of the `GreenScreen <http://greenscreen.io>`__
+In these instructions, $APPID is the value of your "Applicakion ID" from the
+`Google Cast Developer Console <https://cast.google.com/publish/>`__. This will
+have been setup as part of the `GreenScreen <http://greenscreen.io>`__
 installation.
+
+Using the command line utility
+-------------------
+
+Set the CCTV channel on the Kitchen Chromecast:
+
+::
+    $ greenscreen_control -c CCTV set-channel Kitchen
+
+Start casting a given AppID on a Chromecast:
+
+::
+    $ greenscreen_control -a $APPID cast Kitchen
+
+Stop casting on the Kitchen Chromecast:
+
+::
+    $ greenscreen_control stop-cast Kitchen
 
 Available arguments:
 
 ::
+    usage: greenscreen_control [-h] [-g GREENSCREEN_SERVER] [-a APPID]
+                               [-c CHANNEL] [-l {ERROR,WARNING,INFO,DEBUG}]
+                               {set-channel,cast,stop-cast} chromecast
 
-    usage: greenscreen_control.py [-h] [-g GREENSCREEN_SERVER] [-p PORT]
-                                  [-l {ERROR,WARNING,INFO,DEBUG}]
-                                  appid
+    positional arguments:
+      {set-channel,cast,stop-cast}
+                            Command
+      chromecast            Chromecast name
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -g GREENSCREEN_SERVER, --greenscreen_server GREENSCREEN_SERVER
+                            GreenScreen server:port
+      -a APPID, --appid APPID
+                            Chromecast Greenscreen App ID
+      -c CHANNEL, --channel CHANNEL
+                            GreenScreen channel to set
+      -l {ERROR,WARNING,INFO,DEBUG}, --loglevel {ERROR,WARNING,INFO,DEBUG}
+                        Logging level
+
+
+Starting the server
+-------------------
+
+Start a simple TCP server (default port 4995) to control greenscreen and
+Chromecast casting.
+
+::
+
+    $ greenscreen_control_server $APPID
+
+Available arguments:
+
+::
+    usage: greenscreen_control_server [-h] [-g GREENSCREEN_SERVER] [-p PORT]
+                                      [-l {ERROR,WARNING,INFO,DEBUG}]
+                                      appid
 
     positional arguments:
       appid                 Chromecast Greenscreen App ID
@@ -37,14 +83,16 @@ Available arguments:
       -h, --help            show this help message and exit
       -g GREENSCREEN_SERVER, --greenscreen_server GREENSCREEN_SERVER
                             GreenScreen server:port
-      -p PORT, --port PORT  tcp server port number
+      -p PORT, --port PORT  TCP server port number
       -l {ERROR,WARNING,INFO,DEBUG}, --loglevel {ERROR,WARNING,INFO,DEBUG}
-                            logging level
+                            Logging level
 
-Protocol
---------
 
-Uses a simple line-based protocol to a TCP server (default port: 4995):
+Server Protocol
+---------------
+
+The TCP server uses a simple line-based protocol, easily controlled from
+scripts, cron or home automation.
 
 Assign the "CCTV" channel to the "Kitchen" chromecast, and start casting
 it:
