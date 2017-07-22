@@ -12,7 +12,7 @@ Requires a working `GreenScreen <http://greenscreen.io>`__ installation.
 AppID
 -------------------
 
-In these instructions, $APPID is the value of your "Applicakion ID" from the
+In these instructions, $APPID is the value of your "Application ID" from the
 `Google Cast Developer Console <https://cast.google.com/publish/>`__. This will
 have been setup as part of the `GreenScreen <http://greenscreen.io>`__
 installation.
