@@ -34,8 +34,6 @@ class CachedChromecastController(object):
     try:
       chromecast.wait()
       if chromecast.status:
-        if chromecast.status.is_stand_by:
-          chromecast.quit_app()
         logging.info("Starting app %s on Chromecast: %s" % (
             app_id, chromecast_name))
         chromecast.start_app(app_id)
