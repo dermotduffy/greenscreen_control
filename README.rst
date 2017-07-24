@@ -124,3 +124,9 @@ Stop casting:
 ::
 
     chromecast=Kitchen,cast=0
+
+Starting the server by default
+------------------------------
+
+Use the included greenscreen_control.service to start the server as a systemd
+unit.
