@@ -4,7 +4,7 @@ long_description = open('README.rst').read()
 
 setup(
     name='greenscreen_control',
-    version='0.0.1',
+    version='0.0.2',
     license='Apache Software License',
     url='https://github.com/dermotduffy/greenscreen_control',
     author='Dermot Duffy',
