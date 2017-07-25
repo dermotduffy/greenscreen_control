@@ -4,9 +4,9 @@ import argparse
 import logging
 import sys
 
-import chromecast_controller
-import common_args
-import greenscreen_client
+from greenscreen_control import chromecast_controller
+from greenscreen_control import common_args
+from greenscreen_control import greenscreen_client
 
 def main():
   parser = common_args.add_common_args(argparse.ArgumentParser())

@@ -7,8 +7,8 @@ import pychromecast
 from twisted.internet import protocol, reactor, endpoints
 from twisted.protocols.basic import LineReceiver
 
-import chromecast_controller
-import greenscreen_client
+from greenscreen_control import chromecast_controller
+from greenscreen_control import greenscreen_client
 
 # Protocol: Simple line based TCP protocol
 #
