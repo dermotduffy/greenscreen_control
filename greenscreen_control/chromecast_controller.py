@@ -4,13 +4,19 @@ import logging
 import pychromecast
 
 class CachedChromecastController(object):
-  def __init__(self):
+  def __init__(self, tries=None, retry_wait=None, timeout=None):
+    self._tries = tries
+    self._retry_wait = retry_wait
+    self._timeout = timeout
     self._chromecasts = []
 
   def discover_chromecasts(self):
     logging.info("Discovering Chromecasts ...")
     try:
-      chromecasts = pychromecast.get_chromecasts()
+      chromecasts = pychromecast.get_chromecasts(
+          tries=self._tries,
+          retry_wait=self._retry_wait,
+          timeout=self._timeout)
     except pychromecast.PyChromecastError:
       logging.exception("Could not discover Chromecasts")
       return

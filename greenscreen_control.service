@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 # *** Replace APPID with the AppID for your GreenScreen control App ***
-ExecStart=/usr/local/bin/greenscreen_control_server APPID
+ExecStart=/usr/local/bin/greenscreen_control_server -l INFO -a APPID
 Restart=on-abort
 User=nobody
 Group=nogroup

@@ -4,23 +4,13 @@ import argparse
 import logging
 import sys
 
-from greenscreen_control import chromecast_controller
-from greenscreen_control import greenscreen_client
-from greenscreen_control import server
+import chromecast_controller
+import common_args
+import greenscreen_client
 
 def main():
-  parser = argparse.ArgumentParser()
+  parser = common_args.add_common_args(argparse.ArgumentParser())
 
-  parser.add_argument("-g", "--greenscreen_server",
-                      default="http://localhost:4994",
-                      help="GreenScreen server:port")
-  parser.add_argument("-a", "--appid",
-                      help="Chromecast Greenscreen App ID")
-  parser.add_argument("-c", "--channel",
-                      help="GreenScreen channel to set")
-  parser.add_argument(
-      "-l", "--loglevel", default="ERROR", help="Logging level",
-      choices=["ERROR", "WARNING", "INFO", "DEBUG"])
   parser.add_argument(
       "command", help="Command",
       choices=["set-channel", "cast", "stop-cast"])
@@ -42,7 +32,10 @@ def main():
     gsc = greenscreen_client.GreenScreenClient(args.greenscreen_server)
     gsc.set_channel_for_chromecast(args.chromecast, args.channel)
   else:
-    controller = chromecast_controller.CachedChromecastController()
+    controller = chromecast_controller.CachedChromecastController(
+        tries=args.tries,
+        timeout=args.timeout,
+        retry_wait=args.retry_wait)
 
     if args.command == "cast":
       if args.appid is None:

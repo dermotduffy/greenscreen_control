@@ -42,9 +42,10 @@ Available arguments:
 
 ::
 
-    usage: greenscreen_control [-h] [-g GREENSCREEN_SERVER] [-a APPID]
-                               [-c CHANNEL] [-l {ERROR,WARNING,INFO,DEBUG}]
-                               {set-channel,cast,stop-cast} chromecast
+    usage: greenscreen_control_cli.py [-h] [-g GREENSCREEN_SERVER] [-a APPID]
+                                      [-c CHANNEL] [-l {ERROR,WARNING,INFO,DEBUG}]
+                                      [-r TRIES] [-t TIMEOUT] [-w RETRY_WAIT]
+                                      {set-channel,cast,stop-cast} chromecast
 
     positional arguments:
       {set-channel,cast,stop-cast}
@@ -60,7 +61,14 @@ Available arguments:
       -c CHANNEL, --channel CHANNEL
                             GreenScreen channel to set
       -l {ERROR,WARNING,INFO,DEBUG}, --loglevel {ERROR,WARNING,INFO,DEBUG}
-                        Logging level
+                            Logging level
+      -r TRIES, --tries TRIES
+                            Chromecast connection tries. Default is infinite.
+      -t TIMEOUT, --timeout TIMEOUT
+                            Chromecast socket timeout seconds. Default is 30.
+      -w RETRY_WAIT, --retry_wait RETRY_WAIT
+                            Seconds to wait between Chromecast retries. Default is
+                            5.
 
 
 Starting the server
@@ -71,26 +79,36 @@ Chromecast casting.
 
 ::
 
-    $ greenscreen_control_server $APPID
+    $ greenscreen_control_server -l INFO -a $APPID
 
 Available arguments:
 
 ::
 
-    usage: greenscreen_control_server [-h] [-g GREENSCREEN_SERVER] [-p PORT]
-                                      [-l {ERROR,WARNING,INFO,DEBUG}]
-                                      appid
-
-    positional arguments:
-      appid                 Chromecast Greenscreen App ID
+    usage: greenscreen_control_server.py [-h] [-g GREENSCREEN_SERVER] [-a APPID]
+                                         [-c CHANNEL]
+                                         [-l {ERROR,WARNING,INFO,DEBUG}]
+                                         [-r TRIES] [-t TIMEOUT] [-w RETRY_WAIT]
+                                         [-p PORT]
 
     optional arguments:
       -h, --help            show this help message and exit
       -g GREENSCREEN_SERVER, --greenscreen_server GREENSCREEN_SERVER
                             GreenScreen server:port
-      -p PORT, --port PORT  TCP server port number
+      -a APPID, --appid APPID
+                            Chromecast Greenscreen App ID
+      -c CHANNEL, --channel CHANNEL
+                            GreenScreen channel to set
       -l {ERROR,WARNING,INFO,DEBUG}, --loglevel {ERROR,WARNING,INFO,DEBUG}
                             Logging level
+      -r TRIES, --tries TRIES
+                            Chromecast connection tries. Default is infinite.
+      -t TIMEOUT, --timeout TIMEOUT
+                            Chromecast socket timeout seconds. Default is 30.
+      -w RETRY_WAIT, --retry_wait RETRY_WAIT
+                            Seconds to wait between Chromecast retries. Default is
+                            5.
+      -p PORT, --port PORT  TCP server port number
 
 
 Server Protocol
